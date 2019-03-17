@@ -16,7 +16,7 @@ class ProvinceController extends Controller
     {
         $provinces=Province::orderBy('id','DESC')->paginate(10);
 
-        return view('provinces',['provinces'=>$provinces]);
+        return view('provinces.index',['provinces'=>$provinces]);
     }
 
     /**
@@ -26,7 +26,7 @@ class ProvinceController extends Controller
      */
     public function create()
     {
-        //
+        return view('provinces.create');    
     }
 
     /**
@@ -37,7 +37,13 @@ class ProvinceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Province=new Province();
+
+        $Province->name=$request->name;
+        $Province->code=$request->code;
+        $Province->save();
+
+         return redirect('provinces');
     }
 
     /**
@@ -48,7 +54,8 @@ class ProvinceController extends Controller
      */
     public function show($id)
     {
-        //
+        $province=Province::find($id);
+        return view('provinces.show',['province'=>$province]);
     }
 
     /**
@@ -58,8 +65,10 @@ class ProvinceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+        $province=Province::find($id);
+
+        return view('provinces.edit',['province'=>$province]);        
     }
 
     /**
@@ -71,7 +80,14 @@ class ProvinceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //dd($request->all());
+
+        $Province=Province::find($id);
+        $Province->name=$request->name;
+        $Province->code=$request->code;
+        $Province->save();
+
+        return redirect('provinces'); 
     }
 
     /**
@@ -82,6 +98,8 @@ class ProvinceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Province=Province::find($id);
+        $Province->delete();
+         return redirect('provinces');
     }
 }

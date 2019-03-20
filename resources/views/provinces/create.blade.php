@@ -9,7 +9,7 @@
 			<label for="name">Name</label>
 			{{Form::text("name",null,["class" => "form-control", "placeholder" => "name", ])}}
 		</div>
-		
+
 		<div class="form-group">
 			<label for="code">Code</label>
 			{{Form::text("code",null,["class" => "form-control", "placeholder" => "code", ])}}

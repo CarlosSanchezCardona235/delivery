@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Messenger;
 
 class MessengerController extends Controller
 {
@@ -13,7 +14,9 @@ class MessengerController extends Controller
      */
     public function index()
     {
-        
+        $messengers=Messenger::orderBy('id','DESC')->paginate(10);
+
+        return view('messengers.index',['messengers'=>$messengers]); 
     }
 
     /**
@@ -23,7 +26,7 @@ class MessengerController extends Controller
      */
     public function create()
     {
-        //
+        return view('messengers.create');
     }
 
     /**

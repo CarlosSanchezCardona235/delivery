@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Messenger;
-
+use App\Province;
 class MessengerController extends Controller
 {
     /**
@@ -26,7 +26,10 @@ class MessengerController extends Controller
      */
     public function create()
     {
-        return view('messengers.create');
+
+        $provinces=Province::all();
+        return view('messengers.create',['provinces'=>$provinces]);
+
     }
 
     /**
@@ -37,7 +40,20 @@ class MessengerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        //dd($request->all());
+        $Messenger=new Messenger();
+
+        $Messenger->name=$request->name;
+        $Messenger->lastname=$request->lastname;
+        $Messenger->email=$request->email;
+        $Messenger->phone=$request->phone;
+        $Messenger->age=$request->age;
+        $Messenger->province_id=$request->province_id;
+        $Messenger->save();
+
+        return redirect('messengers');    
+
     }
 
     /**
@@ -48,7 +64,7 @@ class MessengerController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -59,7 +75,9 @@ class MessengerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $provinces=Province::all()->pluck('name', 'id');
+        $messenger=Messenger::find($id);
+        return view('messengers.edit',['messenger'=>$messenger,'provinces'=>$provinces]);
     }
 
     /**
@@ -71,7 +89,18 @@ class MessengerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Messenger=Messenger::find($id);
+        $Messenger->name=$request->name;
+        $Messenger->lastname=$request->lastname;
+        $Messenger->email=$request->email;
+        $Messenger->phone=$request->phone;
+        $Messenger->age=$request->age;
+        $Messenger->province_id=$request->province_id;
+
+        $Messenger->save();
+
+        return redirect('messengers');
+
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" id="create-messenger">
     <div class="row justify-content-center">
     	
     	{!! Form::open(array('url' => route('messengers.store'),'method' => 'post')) !!}
@@ -28,7 +28,9 @@
 
 		<div class="form-group">
 			<label for="province_id">Province ID</label>
-			{{Form::text("province_id",null,["class" => "form-control", "placeholder" => "province_id", ])}}
+		<select name="province_id" id="provinces" class="form-control" >
+		
+		</select>
 		</div>
 		<div class="form-group">
     	{{Form::submit('Submit Form',['class'=>'btn btn-primary'])}}

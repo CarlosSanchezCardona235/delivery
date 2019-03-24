@@ -28,7 +28,7 @@
                                 <td>{{$messenger->email}}</td>
                                 <td>{{$messenger->phone}}</td>
                                 <td>{{$messenger->age}}</td>
-                                <td>{{$messenger->province_id}}</td>
+                                <td>{{$messenger->province->name}}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                       <a class="btn btn-secondary" href="../messengers/{{$messenger->id}}/edit"><i class="fa fa-pencil"></i></a>

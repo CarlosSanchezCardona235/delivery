@@ -19,6 +19,8 @@ class ProvinceController extends Controller
         return view('provinces.index',['provinces'=>$provinces]);
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *

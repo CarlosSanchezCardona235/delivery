@@ -7,27 +7,33 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+var url='http://' + window.location.hostname
 
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+$( document ).ready(function() {
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+if($("#create-messenger").length > 0){
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+ $.ajax({
+   	url: url + '/api/provinces',
+   	type:'get',
+   	dataType: 'json'
+   })
+   .done(function(data) {
+   	
+   	var options='';
 
-const app = new Vue({
-    el: '#app'
-});
+   		$.each(data,function(key,value){
+   			options+="<option value='"+value.id+"'>"+value.name+"</option>";
+   		})
+   		$("#provinces").append(options);
+   })
+   .fail(function(error) {
+   	console.log("error");
+   	console.log(error.responseText);
+   })
+   .always(function() {
+   	console.log("complete");
+   });
+  }
+ });

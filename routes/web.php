@@ -20,3 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/provinces', 'ProvinceController');
 Route::resource('/messengers', 'MessengerController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

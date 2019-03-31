@@ -20,8 +20,8 @@ class CreateVehiclesTable extends Migration
             $table->string('model');
             $table->tinyInteger('status')->default(1);
             $table->bigInteger('modal_id')->unsigned();;
-            $table->foreign('modal_id')->references('id')->on('modals')->onDelete('no action')->onUpdate('no action');;
-            $table->bigInteger('messenger_id')->unsigned();;
+            $table->foreign('modal_id')->references('id')->on('modals')->onDelete('no action')->onUpdate('no action');
+            $table->bigInteger('messenger_id')->unsigned();
             $table->foreign('messenger_id')->references('id')->on('messengers')->onDelete('no action')->onUpdate('no action');
             $table->timestamps();
         });

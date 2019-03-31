@@ -27,7 +27,7 @@
 		</div>
 		<div class="form-group">
 			<label for="province_id">Province ID</label>
-			{!! Form::select('province_id', $provinces,$messenger->province_id,['id'=>'provinces', 'class'=>'form-control']) !!}
+			{!! Form::select('province_id', $provinces, $messenger->province_id, ['class'=>'form-control']) !!}
 		</div>
 		<div class="form-group">
     	{{Form::submit('Submit Form',['class'=>'btn btn-primary'])}}
